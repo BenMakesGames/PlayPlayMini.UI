@@ -98,25 +98,25 @@ class PauseMenu: IGameState
 	}
 
 	private void ResumeGameHandler(int x, int y)
-    {
+	{
 		// x, y coordinates that click took place, relative to the button's position
 		// do something
 	}
 
 	private void SettingsHandler(int x, int y)
-    {
+	{
 		// do something
 	}
 
 	private void SaveAndQuitHandler(int x, int y)
-    {
+	{
 		// do something
 	}
 
 	public void ActiveUpdate(GameTime gameTime)
-    {
+	{
 		UI.ActiveUpdate(gameTime);
-    }
+	}
 
 	public void AlwaysDraw(GameTime gameTime)
 	{
@@ -124,11 +124,11 @@ class PauseMenu: IGameState
 	}
 
 	public void ActiveDraw(GameTime gameTime)
-    {
+	{
 		UI.ActiveDraw(gameTime);
 		// note: there is no need to manually update or draw the mouse cursor;
 		// if you're using a UIService, it will handle the mouse for you.
-    }
+	}
 }
 ```
 
