@@ -1,33 +1,28 @@
 ﻿using BenMakesGames.PlayPlayMini.UI.Services;
 using Microsoft.Xna.Framework;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace BenMakesGames.PlayPlayMini.UI.UIElements
+namespace BenMakesGames.PlayPlayMini.UI.UIElements;
+
+public interface IUIElement
 {
-    public interface IUIElement
-    {
-        UIService UI { get; }
+    UIService UI { get; }
 
-        int X { get; }
-        int Y { get; }
-        int Width { get; }
-        int Height { get; }
-        bool Visible { get; }
-        IReadOnlyList<IUIElement> Children { get; }
+    int X { get; }
+    int Y { get; }
+    int Width { get; }
+    int Height { get; }
+    bool Visible { get; }
+    IReadOnlyList<IUIElement> Children { get; }
         
-        ClickDelegate DoClick { get; }
-        ClickDelegate DoDoubleClick { get; }
-        MouseEnterDelegate DoMouseEnter { get; }
-        MouseExitDelegate DoMouseExit { get; }
+    ClickDelegate DoClick { get; }
+    ClickDelegate DoDoubleClick { get; }
+    MouseEnterDelegate DoMouseEnter { get; }
+    MouseExitDelegate DoMouseExit { get; }
 
-        void Draw(int xOffset, int yOffset, GameTime gameTime);
+    void Draw(int xOffset, int yOffset, GameTime gameTime);
 
-        public delegate void ClickDelegate(int x, int y);
-        public delegate void MouseEnterDelegate();
-        public delegate void MouseExitDelegate();
-    }
+    public delegate void ClickDelegate(int x, int y);
+    public delegate void MouseEnterDelegate();
+    public delegate void MouseExitDelegate();
 }

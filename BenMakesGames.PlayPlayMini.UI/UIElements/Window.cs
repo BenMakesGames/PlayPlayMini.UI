@@ -1,48 +1,42 @@
 ﻿using BenMakesGames.PlayPlayMini.UI.Services;
 using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace BenMakesGames.PlayPlayMini.UI.UIElements
+namespace BenMakesGames.PlayPlayMini.UI.UIElements;
+
+public class Window: UIContainer, IUIElement
 {
-    public class Window: UIContainer, IUIElement
+    public UIService UI { get; set; }
+
+    public int X { get; set; }
+    public int Y { get; set; }
+    public int Width { get; set; }
+    public int Height { get; set; }
+    public bool Visible { get; set; } = true;
+
+    public string Title { get; set; }
+
+    public IUIElement.ClickDelegate DoClick { get; set; }
+    public IUIElement.ClickDelegate DoDoubleClick { get; set; }
+    public IUIElement.MouseEnterDelegate DoMouseEnter { get; set; }
+    public IUIElement.MouseExitDelegate DoMouseExit { get; set; }
+
+    public Window(UIService ui, int x, int y, int w, int h, string title): base()
     {
-        public UIService UI { get; set; }
+        UI = ui;
 
-        public int X { get; set; }
-        public int Y { get; set; }
-        public int Width { get; set; }
-        public int Height { get; set; }
-        public bool Visible { get; set; } = true;
+        X = x;
+        Y = y;
+        Width = w;
+        Height = h;
+        Title = title;
+    }
 
-        public string Title { get; set; }
+    public void Draw(int xOffset, int yOffset, GameTime gameTime)
+    {
+        UI.Graphics.DrawFilledRectangle(X, Y, Width, 12, UI.Theme.Theme.WindowColor, Color.Black);
 
-        public IUIElement.ClickDelegate DoClick { get; set; }
-        public IUIElement.ClickDelegate DoDoubleClick { get; set; }
-        public IUIElement.MouseEnterDelegate DoMouseEnter { get; set; }
-        public IUIElement.MouseExitDelegate DoMouseExit { get; set; }
+        UI.Graphics.DrawText(UI.GetFont(), X + 4, Y + 2, Title, UI.GetContrastingBlackOrWhite(UI.Theme.Theme.WindowColor));
 
-        public Window(UIService ui, int x, int y, int w, int h, string title): base()
-        {
-            UI = ui;
-
-            X = x;
-            Y = y;
-            Width = w;
-            Height = h;
-            Title = title;
-        }
-
-        public void Draw(int xOffset, int yOffset, GameTime gameTime)
-        {
-            UI.Graphics.DrawFilledRectangle(X, Y, Width, 12, UI.Theme.Theme.WindowColor, Color.Black);
-
-            UI.Graphics.DrawText(UI.GetFont(), X + 4, Y + 2, Title, UI.GetContrastingBlackOrWhite(UI.Theme.Theme.WindowColor));
-
-            UI.Graphics.DrawFilledRectangle(X, Y + 11, Width, Height - 11, Color.White, Color.Black);
-        }
+        UI.Graphics.DrawFilledRectangle(X, Y + 11, Width, Height - 11, Color.White, Color.Black);
     }
 }
